@@ -10,7 +10,11 @@ const upload = multer({ limits: { fileSize: 12 * 1024 * 1024 } });
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static("."));
+app.get("/", (_req, res) => {
+  res.sendFile(process.cwd() + "/index.html");
+});
+
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const MODEL = process.env.OPENAI_MODEL || "gpt-4.1";
