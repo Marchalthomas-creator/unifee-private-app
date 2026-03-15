@@ -84,6 +84,17 @@ scanBtn.addEventListener("click", async () => {
     });
     const data = await res.json();
 
+document.getElementById("supplier").value = data.supplier || "";
+document.getElementById("consumption").value = data.annual_consumption_kwh || "";
+document.getElementById("currentPrice").value = data.kwh_price_eur || "";
+document.getElementById("currentSubscription").value = data.subscription_annual_eur || "";
+document.getElementById("currentTurpe").value = data.turpe_annual_eur || "";
+document.getElementById("currentTaxes").value = data.taxes_annual_eur || "";
+document.getElementById("subscribedPower").value = data.subscribed_power_kva || "";
+document.getElementById("maxPower").value = data.max_power_used_kva || "";
+document.getElementById("contractEnd").value = data.contract_end_date || "";
+
+scanStatus.textContent = "Extraction terminée. Vérifie les champs puis lance le calcul."
     if (!res.ok) {
       throw new Error(data?.error?.message || data?.error || "Erreur API");
     }
