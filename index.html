@@ -1,303 +1,45 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unifee • Audit Électricité</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div id="app">
-    <section id="login-screen" class="screen active">
-      <div class="card hero">
-        <div class="brand">UNIFEE</div>
-        <h1>Bienvenue chez Unifee</h1>
-        <p>Commencez à calculer les économies d’énergie de vos clients.</p>
+<h3>Facture actuelle</h3>
 
-        <label class="label">Code d’accès</label>
-        <input
-          id="access-code"
-          class="input"
-          type="password"
-          placeholder="Entrez le code"
-        />
+<input id="supplier" placeholder="Fournisseur">
 
-        <button id="login-btn" class="btn primary">Accéder à l’outil</button>
-        <p class="hint">Code démo : <strong>UNIFEE2026</strong></p>
-      </div>
-    </section>
+<input id="offer" placeholder="Offre">
 
-    <section id="audit-screen" class="screen">
-      <header class="topbar">
-        <div>
-          <div class="brand small">UNIFEE</div>
-          <h2>Audit électricité</h2>
-        </div>
-        <button id="logout-btn" class="btn secondary">Quitter</button>
-      </header>
+<input id="power" placeholder="Puissance kVA">
 
-      <div class="card">
-        <h3>1. Photo de la facture</h3>
+<h3>Abonnement</h3>
 
-        <input
-          id="invoiceFile"
-          class="input"
-          type="file"
-          accept="image/*,application/pdf"
-        />
+<input id="subscription" placeholder="Montant abonnement">
 
-        <div class="actions">
-          <button id="scan-btn" class="btn primary">
-            Prendre / choisir une facture
-          </button>
-        </div>
+<input id="subscription_transport" placeholder="Transport abonnement">
 
-        <p id="scan-status" class="hint">
-          Scanne la facture puis vérifie les champs préremplis avant de calculer.
-        </p>
-      </div>
+<h3>Consommation</h3>
 
-      <div class="card">
-        <h3>2. Informations client</h3>
+<input id="consumption_kwh" placeholder="kWh consommés">
 
-        <div class="grid two">
-          <div>
-            <label class="label">Nom du restaurant</label>
-            <input
-              id="restaurant"
-              class="input"
-              placeholder="Ex. Le Central"
-            />
-          </div>
+<input id="kwh_price" placeholder="Prix kWh">
 
-          <div>
-            <label class="label">Ville</label>
-            <input
-              id="city"
-              class="input"
-              placeholder="Ex. Lyon"
-            />
-          </div>
-        </div>
+<input id="consumption_amount" placeholder="Montant consommation">
 
-        <div class="grid two">
-          <div>
-            <label class="label">Fournisseur actuel</label>
-            <input
-              id="supplier"
-              class="input"
-              placeholder="Ex. EDF"
-            />
-          </div>
+<input id="consumption_transport" placeholder="Transport consommation">
 
-          <div>
-            <label class="label">Fin de contrat</label>
-            <input
-              id="contractEnd"
-              class="input"
-              type="date"
-            />
-          </div>
-        </div>
-      </div>
+<h3>Taxes</h3>
 
-      <div class="card">
-        <h3>3. Données extraites de la facture actuelle</h3>
+<input id="taxes" placeholder="Total taxes">
 
-        <div class="grid two">
-          <div>
-            <label class="label">Consommation annuelle (kWh)</label>
-            <input
-              id="consumption"
-              class="input"
-              type="number"
-              placeholder="40000"
-            />
-          </div>
+<input id="cta" placeholder="CTA">
 
-          <div>
-            <label class="label">Prix actuel du kWh (€)</label>
-            <input
-              id="currentPrice"
-              class="input"
-              type="number"
-              step="0.0001"
-              placeholder="0.19"
-            />
-          </div>
-        </div>
+<input id="tcfe" placeholder="TCFE">
 
-        <div class="grid two">
-          <div>
-            <label class="label">Abonnement actuel annuel (€)</label>
-            <input
-              id="currentSubscription"
-              class="input"
-              type="number"
-              placeholder="500"
-            />
-          </div>
+<input id="cspe" placeholder="CSPE">
 
-          <div>
-            <label class="label">TURPE actuel annuel (€)</label>
-            <input
-              id="currentTurpe"
-              class="input"
-              type="number"
-              placeholder="2900"
-            />
-          </div>
-        </div>
+<h3>TVA</h3>
 
-        <div class="grid two">
-          <div>
-            <label class="label">Taxes actuelles annuelles (€)</label>
-            <input
-              id="currentTaxes"
-              class="input"
-              type="number"
-              placeholder="1700"
-            />
-          </div>
+<input id="tva_5" placeholder="TVA 5.5">
 
-          <div>
-            <label class="label">Puissance souscrite (kVA)</label>
-            <input
-              id="subscribedPower"
-              class="input"
-              type="number"
-              placeholder="36"
-            />
-          </div>
-        </div>
+<input id="tva_20" placeholder="TVA 20">
 
-        <div class="grid two">
-          <div>
-            <label class="label">Puissance max utilisée (kVA)</label>
-            <input
-              id="maxPower"
-              class="input"
-              type="number"
-              placeholder="22"
-            />
-          </div>
+<h3>Total</h3>
 
-          <div>
-            <label class="label">Notes extraction</label>
-            <textarea
-              id="notes"
-              class="input textarea"
-              placeholder="Les notes d'extraction apparaîtront ici"
-            ></textarea>
-          </div>
-        </div>
-      </div>
+<input id="total_ht" placeholder="Total HT">
 
-      <div class="card">
-        <h3>4. Paramètres Unifee</h3>
-
-        <div class="grid two">
-          <div>
-            <label class="label">Prix Unifee du kWh (€)</label>
-            <input
-              id="unifeePrice"
-              class="input"
-              type="number"
-              step="0.0001"
-              placeholder="0.18"
-            />
-          </div>
-
-          <div>
-            <label class="label">Abonnement Unifee annuel (€)</label>
-            <input
-              id="unifeeSubscription"
-              class="input"
-              type="number"
-              placeholder="400"
-            />
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div>
-            <label class="label">TURPE Unifee annuel (€)</label>
-            <input
-              id="unifeeTurpe"
-              class="input"
-              type="number"
-              placeholder="2600"
-            />
-          </div>
-
-          <div>
-            <label class="label">Taxes Unifee annuelles (€)</label>
-            <input
-              id="unifeeTaxes"
-              class="input"
-              type="number"
-              placeholder="1700"
-            />
-          </div>
-        </div>
-
-        <div class="actions">
-          <button id="calculate-btn" class="btn primary">
-            Calculer mes économies
-          </button>
-          <button id="save-btn" class="btn secondary">
-            Enregistrer
-          </button>
-        </div>
-      </div>
-
-      <div id="results-card" class="card hidden">
-        <h3>5. Résultats</h3>
-
-        <div class="kpis">
-          <div class="kpi">
-            <span class="kpi-label">Facture actuelle</span>
-            <span id="currentTotal" class="kpi-value">0 €</span>
-          </div>
-
-          <div class="kpi">
-            <span class="kpi-label">Facture Unifee</span>
-            <span id="unifeeTotal" class="kpi-value">0 €</span>
-          </div>
-
-          <div class="kpi">
-            <span class="kpi-label">Économie estimée</span>
-            <span id="savings" class="kpi-value">0 €</span>
-          </div>
-
-          <div class="kpi">
-            <span class="kpi-label">Économie (%)</span>
-            <span id="savingsPct" class="kpi-value">0 %</span>
-          </div>
-        </div>
-
-        <div class="detail-grid">
-          <div>
-            <strong>Puissance recommandée :</strong>
-            <span id="recommendedPower">-</span>
-          </div>
-
-          <div>
-            <strong>Économie puissance :</strong>
-            <span id="powerSavings">-</span>
-          </div>
-
-          <div>
-            <strong>Score :</strong>
-            <span id="score">-</span>
-          </div>
-        </div>
-
-        <p id="summaryText" class="summary"></p>
-      </div>
-    </section>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<input id="total_ttc" placeholder="Total TTC">
